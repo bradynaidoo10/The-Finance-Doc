@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import WAButton from "./ui/WAButton";
+import { Menu, X, Stethoscope } from "lucide-react";
+import { openWA } from "@/app/lib/wa";
 
 const navLinks = [
-  { label: "Products", href: "#products" },
-  { label: "Why Insure", href: "#why-insure" },
-  { label: "Awards", href: "#awards" },
-  { label: "About", href: "#why-us" },
+  { label: "Symptoms", href: "#symptoms" },
+  { label: "Prescriptions", href: "#prescriptions" },
+  { label: "Our Practice", href: "#our-practice" },
+  { label: "Results", href: "#results" },
 ];
 
 export default function Navbar() {
@@ -36,15 +36,20 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-[0_1px_24px_rgba(10,15,30,0.08)] py-3"
+            ? "bg-white/95 backdrop-blur-md shadow-[0_1px_24px_rgba(13,27,42,0.08)] py-3"
             : "bg-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
           {/* Logo */}
-          <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2 cursor-pointer">
-            <span className="font-playfair font-bold text-[#0a0f1e] text-xl tracking-tight">
-              THE <span className="text-[#c8a84b]">·</span> BLUEPRINT
+          <button
+            onClick={() => scrollTo("#hero")}
+            className="flex items-center gap-2.5 cursor-pointer"
+          >
+            <Stethoscope size={22} className="text-[#c8a84b]" />
+            <span className="font-inter font-semibold text-[#0d1b2a] text-lg tracking-tight">
+              THE FINANCE{" "}
+              <span className="font-playfair italic text-[#1a6fb5]">Doc</span>
             </span>
           </button>
 
@@ -54,7 +59,7 @@ export default function Navbar() {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="text-sm font-medium text-[#374151] hover:text-[#0a0f1e] transition-colors duration-150 cursor-pointer"
+                className="text-sm font-medium text-[#374151] hover:text-[#1a6fb5] transition-colors duration-150 cursor-pointer"
               >
                 {link.label}
               </button>
@@ -63,17 +68,18 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <WAButton
-              size="sm"
-              message="Hi The Blueprint! I'd like a free financial consultation."
+            <button
+              onClick={() => openWA("default")}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1a6fb5] text-white text-sm font-semibold hover:bg-[#155d9a] transition-colors duration-200 shadow-blue cursor-pointer"
             >
-              Free Consultation 💬
-            </WAButton>
+              <Stethoscope size={15} />
+              Free Check-Up
+            </button>
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-[#0a0f1e] cursor-pointer"
+            className="md:hidden p-2 text-[#0d1b2a] cursor-pointer"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -96,19 +102,19 @@ export default function Navbar() {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="text-2xl font-playfair font-semibold text-[#0a0f1e] text-left border-b border-[rgba(200,168,75,0.15)] pb-4 cursor-pointer"
+                className="text-2xl font-playfair font-semibold text-[#0d1b2a] text-left border-b border-[rgba(26,111,181,0.12)] pb-4 cursor-pointer"
               >
                 {link.label}
               </button>
             ))}
             <div className="pt-4">
-              <WAButton
-                size="lg"
-                fullWidth
-                message="Hi The Blueprint! I'd like a free financial consultation."
+              <button
+                onClick={() => { setOpen(false); openWA("default"); }}
+                className="w-full py-4 rounded-full bg-[#1a6fb5] text-white font-semibold flex items-center justify-center gap-2 cursor-pointer"
               >
-                Free Consultation 💬
-              </WAButton>
+                <Stethoscope size={18} />
+                Book Your Free Check-Up
+              </button>
             </div>
           </motion.div>
         )}

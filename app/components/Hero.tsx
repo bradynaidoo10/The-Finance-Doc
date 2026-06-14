@@ -3,8 +3,8 @@
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import WAButton from "./ui/WAButton";
-import GoldButton from "./ui/GoldButton";
+import { Stethoscope } from "lucide-react";
+import { openWA } from "@/app/lib/wa";
 import { fadeUp, staggerChildren } from "@/app/lib/motion";
 
 const FloatingShield = dynamic(() => import("./3d/FloatingShield"), {
@@ -20,8 +20,8 @@ export default function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
-  const scrollToProducts = () => {
-    document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToPrescriptions = () => {
+    document.querySelector("#prescriptions")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -30,18 +30,18 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center bg-white overflow-hidden pt-20"
     >
-      {/* Subtle grid pattern */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(#0a0f1e 1px, transparent 1px), linear-gradient(90deg, #0a0f1e 1px, transparent 1px)",
+            "linear-gradient(#0d1b2a 1px, transparent 1px), linear-gradient(90deg, #0d1b2a 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
-      {/* Gold glow top-right */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(200,168,75,0.08)_0%,transparent_70%)] pointer-events-none" />
+      {/* Blue glow top-right */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(26,111,181,0.07)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 w-full py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -55,31 +55,34 @@ export default function Hero() {
           >
             {/* Eyebrow badge */}
             <motion.div variants={fadeUp} className="mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(200,168,75,0.4)] bg-[rgba(200,168,75,0.06)] text-[#c8a84b] text-xs font-semibold tracking-widest uppercase">
-                <span>✦</span>
-                FSCA Regulated · South Africa
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(26,111,181,0.25)] bg-[rgba(26,111,181,0.05)] text-[#1a6fb5] text-xs font-semibold tracking-widest uppercase">
+                <Stethoscope size={12} />
+                Financial Health Specialist · FSCA Regulated · South Africa
               </span>
             </motion.div>
 
             {/* H1 */}
             <motion.h1
               variants={fadeUp}
-              className="font-playfair text-[clamp(2.6rem,5.5vw,4.2rem)] font-bold leading-[1.08] text-[#0a0f1e] mb-6"
+              className="font-playfair text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.06] text-[#0d1b2a] mb-6"
             >
-              Protect Your Family.
+              Your Finances Have
               <br />
-              Build Your{" "}
-              <span className="italic text-[#c8a84b]">Legacy.</span>
+              Symptoms. We Have
+              <br />
+              the{" "}
+              <span className="italic text-[#c8a84b]">Cure.</span>
             </motion.h1>
 
             {/* Subheading */}
             <motion.p
               variants={fadeUp}
-              className="text-lg text-[#6b7280] leading-relaxed mb-10 max-w-[480px]"
+              className="text-lg text-[#6b7280] leading-relaxed mb-10 max-w-[500px]"
             >
-              One unexpected event is the difference between your family
-              thriving and your family surviving. The Blueprint makes sure you
-              are never unprepared.
+              Most South Africans are one hospital bill, one retrenchment, or
+              one death away from financial collapse. The Finance Doc diagnoses
+              your gaps and prescribes a plan that protects everything
+              you&apos;ve built.
             </motion.p>
 
             {/* CTAs */}
@@ -87,19 +90,19 @@ export default function Hero() {
               variants={fadeUp}
               className="flex flex-wrap gap-4 mb-10"
             >
-              <WAButton
-                size="lg"
-                message="Hi The Blueprint! I'd like a free financial consultation."
+              <button
+                onClick={() => openWA("default")}
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#1a6fb5] text-white font-semibold text-base hover:bg-[#155d9a] transition-colors duration-200 shadow-blue hover:shadow-blue-lg cursor-pointer"
               >
-                💬 WhatsApp Us — It&apos;s Free
-              </WAButton>
-              <GoldButton
-                variant="outline"
-                size="lg"
-                onClick={scrollToProducts}
+                <Stethoscope size={18} />
+                Book Your Free Check-Up
+              </button>
+              <button
+                onClick={scrollToPrescriptions}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-[#1a6fb5] text-[#1a6fb5] font-semibold text-base hover:bg-[#1a6fb5] hover:text-white transition-all duration-200 cursor-pointer"
               >
-                Explore Products →
-              </GoldButton>
+                View Your Prescriptions →
+              </button>
             </motion.div>
 
             {/* Trust bar */}
@@ -108,13 +111,13 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#6b7280]"
             >
               <span className="flex items-center gap-1.5">
-                <span className="text-[#c8a84b]">🏆</span>
+                <span>🏆</span>
                 Broker of the Year 2023 &amp; 2025
               </span>
-              <span className="w-px h-4 bg-[rgba(200,168,75,0.3)]" />
-              <span>700+ Clients</span>
-              <span className="w-px h-4 bg-[rgba(200,168,75,0.3)]" />
-              <span>10 Years Experience</span>
+              <span className="w-px h-4 bg-[rgba(26,111,181,0.2)]" />
+              <span>700+ Patients Served</span>
+              <span className="w-px h-4 bg-[rgba(26,111,181,0.2)]" />
+              <span>10 Years in Practice</span>
             </motion.div>
           </motion.div>
 

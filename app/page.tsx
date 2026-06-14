@@ -1,10 +1,10 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import StatsBar from "./components/StatsBar";
-import WhyInsure from "./components/WhyInsure";
-import Products from "./components/Products";
+import Symptoms from "./components/Symptoms";
+import Prescriptions from "./components/Prescriptions";
 import Awards from "./components/Awards";
-import WhyUs from "./components/WhyUs";
+import OurPractice from "./components/OurPractice";
 import Testimonials from "./components/Testimonials";
 import FinalCTA from "./components/FinalCTA";
 import ComplianceBar from "./components/ComplianceBar";
@@ -18,10 +18,10 @@ export default function Home() {
       <main>
         <Hero />
         <StatsBar />
-        <WhyInsure />
-        <Products />
+        <Symptoms />
+        <Prescriptions />
         <Awards />
-        <WhyUs />
+        <OurPractice />
         <Testimonials />
         <FinalCTA />
       </main>

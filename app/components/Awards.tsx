@@ -3,20 +3,19 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { slideInLeft, slideInRight, fadeUp } from "@/app/lib/motion";
-import SectionLabel from "./ui/SectionLabel";
 import { openWA } from "@/app/lib/wa";
 
 const awards = [
   {
     year: "2025",
     title: "Medical Aid Broker of the Year",
-    body: "Recognised for delivering consistent, needs-based advice and exceptional client outcomes across the medical aid space.",
+    body: "Recognised for outstanding client outcomes, enrolment volume and retention across Bonitas and Bestmed.",
     dir: slideInLeft,
   },
   {
     year: "2023",
     title: "Medical Aid Broker of the Year",
-    body: "Two years before, the same standard. The same commitment to finding the right plan — not the most profitable one.",
+    body: "Awarded for excellence in medical aid advisory across KwaZulu-Natal.",
     dir: slideInRight,
   },
 ];
@@ -26,20 +25,31 @@ export default function Awards() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="awards" ref={ref} className="py-24 md:py-32 bg-[#f8f8f6]">
+    <section id="results" ref={ref} className="py-24 md:py-32 bg-[#f4f7f9]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="text-center mb-16">
-          <SectionLabel>Recognition</SectionLabel>
+          <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#1a6fb5]">
+            Clinical Results
+          </span>
           <motion.h2
             variants={fadeUp}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="font-playfair font-bold text-[clamp(2rem,4vw,3rem)] text-[#0a0f1e] leading-tight"
+            className="font-playfair font-bold text-[clamp(2rem,4vw,3rem)] text-[#0d1b2a] mt-3 leading-tight"
           >
-            Recognised for doing right
+            A Practice Built on
             <br />
-            <span className="italic text-[#c8a84b]">by clients, consistently.</span>
+            <span className="italic text-[#c8a84b]">Proven Outcomes</span>
           </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="text-[#6b7280] text-lg mt-4 max-w-[480px] mx-auto"
+          >
+            Industry recognition earned through one discipline — putting the
+            patient first, always.
+          </motion.p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-14">
@@ -50,16 +60,24 @@ export default function Awards() {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               transition={{ delay: i * 0.15 }}
-              className="bg-white rounded-2xl p-8 md:p-10 border border-[rgba(200,168,75,0.15)] shadow-card hover:shadow-card-hover hover:border-[rgba(200,168,75,0.35)] transition-all duration-300"
+              className="relative bg-white rounded-2xl p-8 md:p-10 border border-[rgba(26,111,181,0.12)] shadow-card hover:shadow-card-hover hover:border-[rgba(26,111,181,0.3)] transition-all duration-300 overflow-hidden"
             >
+              {/* Faint stethoscope watermark */}
+              <div className="absolute -bottom-4 -right-4 text-[8rem] opacity-[0.04] select-none pointer-events-none">
+                🩺
+              </div>
+
+              {/* Blue left accent */}
+              <div className="absolute left-0 top-0 w-[3px] h-full bg-[#1a6fb5] rounded-l-2xl" />
+
               <div className="flex items-start gap-6">
                 <div className="text-5xl flex-shrink-0">🏆</div>
                 <div>
                   <div className="font-playfair font-bold text-[3.5rem] leading-none text-[#c8a84b] mb-1">
                     {award.year}
                   </div>
-                  <div className="w-10 h-0.5 bg-[#c8a84b] mb-3" />
-                  <h3 className="font-semibold text-lg text-[#0a0f1e] mb-2">
+                  <div className="w-10 h-0.5 bg-[#1a6fb5] mb-3" />
+                  <h3 className="font-semibold text-lg text-[#0d1b2a] mb-2">
                     {award.title}
                   </h3>
                   <p className="text-[#6b7280] text-sm leading-relaxed">
@@ -78,14 +96,10 @@ export default function Awards() {
           className="text-center"
         >
           <button
-            onClick={() =>
-              openWA(
-                "Hi The Blueprint! I heard about your award-winning service and I'd like to learn more."
-              )
-            }
-            className="text-[#c8a84b] font-semibold text-sm hover:text-[#b8943b] transition-colors cursor-pointer underline underline-offset-4 decoration-[rgba(200,168,75,0.4)]"
+            onClick={() => openWA("default")}
+            className="text-[#1a6fb5] font-semibold text-sm hover:text-[#155d9a] transition-colors cursor-pointer underline underline-offset-4 decoration-[rgba(26,111,181,0.4)]"
           >
-            Experience the award-winning difference →
+            Experience the award-winning practice →
           </button>
         </motion.div>
       </div>

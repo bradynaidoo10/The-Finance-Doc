@@ -18,20 +18,22 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Blueprint | Financial Planning South Africa",
+  title: "The Finance Doc | Financial Health Specialist South Africa",
   description:
-    "Award-winning financial advisory in South Africa. Life cover, retirement planning, medical aid, investments — tailored to your life. Free consultation via WhatsApp.",
+    "The Finance Doc — South Africa's financial health specialist. Life cover, retirement planning, medical aid, disability cover and wealth building. Free financial health check-up via WhatsApp. KwaZulu-Natal.",
   keywords: [
     "financial advisor South Africa",
-    "life cover KwaZulu-Natal",
-    "medical aid broker",
+    "life cover KZN",
+    "medical aid broker Pietermaritzburg",
     "retirement planning SA",
-    "The Blueprint",
+    "The Finance Doc",
+    "Brady Naidoo",
+    "financial health specialist",
   ],
   openGraph: {
-    title: "The Blueprint | Protect Your Family. Build Your Legacy.",
+    title: "The Finance Doc | Diagnosing Your Financial Future.",
     description:
-      "Award-winning financial advisory in South Africa. Life cover, retirement planning, medical aid, investments — tailored to your life.",
+      "Your finances have symptoms. We have the cure. Book your free financial health check-up today.",
     locale: "en_ZA",
     type: "website",
   },
