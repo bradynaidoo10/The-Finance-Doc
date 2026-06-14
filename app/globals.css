@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #c8a84b;
+  --gold-light: #e8c96e;
+  --gold-border: rgba(200, 168, 75, 0.2);
+  --navy: #0a0f1e;
+  --cream: #f8f8f6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: #374151;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(200, 168, 75, 0.25);
+  color: #0a0f1e;
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 px-4 md:px-8 lg:px-16;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gold-text {
+    color: var(--gold);
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-widest uppercase;
+    color: var(--gold);
+  }
+
+  .will-change-transform {
+    will-change: transform;
+  }
+}
+
+/* Floating WhatsApp button */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(22, 163, 74, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(22, 163, 74, 0.5);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f8f6;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 168, 75, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 168, 75, 0.7);
+}
