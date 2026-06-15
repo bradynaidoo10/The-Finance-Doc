@@ -10,39 +10,48 @@ const diagnoses = [
     icon: "🩺",
     title: "No Financial Cover",
     symptom:
-      "If you died tomorrow, your family would lose the house, the car, and their lifestyle within 90 days.",
+      "Your family's entire financial future rests on one thing — you showing up to work tomorrow. If you don't, there is no plan B. No income. No bond payment. No school fees. Within 90 days, everything you've spent years building disappears.",
     diagnosis: "Terminal financial exposure.",
     prescription: "Life cover from R150/month.",
     waKey: "lifeCover" as const,
+    severity: "critical",
   },
   {
     icon: "🛡️",
-    title: "Income Stopped Suddenly",
+    title: "Your Income Is One Accident Away From Zero",
     symptom:
-      "One accident or illness and your salary stops. Most South Africans have less than 30 days of savings.",
+      "Most South Africans are 30 days from financial collapse if they stop working. Disability is 3 times more likely than death before retirement — yet almost no one is covered. One fall. One diagnosis. One car accident. Your salary stops. Your bills don't.",
     diagnosis: "Critical income vulnerability.",
     prescription: "Disability & income protection cover.",
     waKey: "disability" as const,
+    severity: "critical",
   },
   {
     icon: "👴",
-    title: "Retirement Shortfall",
+    title: "You Will Outlive Your Savings",
     symptom:
-      "You're working hard but your retirement savings won't last 5 years into retirement.",
+      "The average South African retires with enough money to last 4 years — but will live for 20. That means 16 years of depending on children, the state, or nothing at all. Every year you delay costs you compounding growth you can never recover.",
     diagnosis: "Chronic underfunding.",
     prescription: "Retirement Annuity with SARS tax benefits.",
     waKey: "retirement" as const,
+    severity: "serious",
   },
   {
     icon: "🏥",
-    title: "Medical Aid Gap",
+    title: "One Hospital Bill From Bankruptcy",
     symptom:
-      "One specialist visit, one surgery, one ICU stay — and your savings are gone.",
+      "A single night in ICU costs R25,000–R80,000. A cancer diagnosis averages R500,000 in treatment. Without the right medical aid, a health crisis becomes a financial one — and most people don't find out their cover is wrong until it's too late to fix it.",
     diagnosis: "Acute medical exposure.",
     prescription: "A correctly structured medical aid plan.",
     waKey: "medicalAid" as const,
+    severity: "serious",
   },
 ];
+
+const severityColour: Record<string, string> = {
+  critical: "text-red-400",
+  serious: "text-orange-400",
+};
 
 export default function Symptoms() {
   const ref = useRef<HTMLElement>(null);
@@ -54,7 +63,6 @@ export default function Symptoms() {
       ref={ref}
       className="py-24 md:py-32 bg-[#0d1b2a] relative overflow-hidden"
     >
-      {/* Blue glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(26,111,181,0.08)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 relative">
@@ -73,17 +81,17 @@ export default function Symptoms() {
             variants={fadeUp}
             className="font-playfair font-bold text-[clamp(2rem,4vw,3rem)] text-white mt-3 mb-4 leading-tight"
           >
-            Do Your Finances Show
+            Most South Africans Are
             <br />
-            <span className="italic text-[#c8a84b]">These Symptoms?</span>
+            <span className="italic text-[#c8a84b]">Financially Ill and Don&apos;t Know It.</span>
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-[#9ca3af] text-lg max-w-[560px] mx-auto">
-            These are the most common financial conditions we treat. Left
-            untreated, they become critical.
+          <motion.p variants={fadeUp} className="text-[#9ca3af] text-lg max-w-[580px] mx-auto leading-relaxed">
+            These are the four most common financial conditions we diagnose.
+            None of them show symptoms until it&apos;s too late — and every one
+            of them is treatable today.
           </motion.p>
         </motion.div>
 
-        {/* Diagnosis cards */}
         <motion.div
           variants={staggerChildren}
           initial="hidden"
@@ -105,9 +113,9 @@ export default function Symptoms() {
           <h3 className="font-playfair font-semibold text-2xl text-white mb-3">
             Not sure how financially healthy you are?
           </h3>
-          <p className="text-[#9ca3af] mb-6 max-w-[460px] mx-auto">
-            Send us one WhatsApp. We&apos;ll run a free Financial Health
-            Assessment — 5 questions, 10 minutes, complete diagnosis.
+          <p className="text-[#9ca3af] mb-6 max-w-[480px] mx-auto leading-relaxed">
+            Take our free 10-question Financial Health Assessment below — or
+            send us one WhatsApp and we&apos;ll do it with you in 15 minutes.
           </p>
           <button
             onClick={() => openWA("diagnosis")}
@@ -136,14 +144,9 @@ function DiagnosisCard({
       ref={ref}
       initial={{ opacity: 0, y: 32 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.12,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className="group relative bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-xl p-7 overflow-hidden hover:border-[rgba(26,111,181,0.3)] transition-all duration-300"
     >
-      {/* Blue left border animated */}
       <motion.div
         initial={{ scaleY: 0 }}
         animate={isInView ? { scaleY: 1 } : {}}
@@ -154,36 +157,38 @@ function DiagnosisCard({
       <div className="flex items-start gap-4">
         <span className="text-3xl mt-0.5 flex-shrink-0">{data.icon}</span>
         <div className="flex-1">
-          <h3 className="font-playfair font-semibold text-xl text-white mb-3">
+          <h3 className="font-playfair font-semibold text-xl text-white mb-3 leading-snug">
             {data.title}
           </h3>
 
-          <div className="space-y-2 mb-4">
+          <div className="space-y-3 mb-5">
             <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-red-400 mr-2">
-                Symptom
+              <span className={`text-[10px] font-bold tracking-widest uppercase mr-2 ${severityColour[data.severity]}`}>
+                ⚠ Symptom
               </span>
-              <p className="text-[#9ca3af] text-sm leading-relaxed inline">
+              <p className="text-[#9ca3af] text-sm leading-relaxed mt-1">
                 {data.symptom}
               </p>
             </div>
-            <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#1a6fb5] mr-2">
-                Diagnosis
-              </span>
-              <span className="text-[#9ca3af] text-sm">{data.diagnosis}</span>
-            </div>
-            <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#c8a84b] mr-2">
-                Prescription
-              </span>
-              <span className="text-[#9ca3af] text-sm">{data.prescription}</span>
+            <div className="flex flex-wrap gap-x-6 gap-y-1 pt-1 border-t border-[rgba(255,255,255,0.05)]">
+              <div>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-[#1a6fb5] mr-1">
+                  Diagnosis:
+                </span>
+                <span className="text-[#9ca3af] text-xs">{data.diagnosis}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-[#c8a84b] mr-1">
+                  Prescription:
+                </span>
+                <span className="text-[#9ca3af] text-xs">{data.prescription}</span>
+              </div>
             </div>
           </div>
 
           <button
             onClick={() => openWA(data.waKey)}
-            className="text-[#1a6fb5] text-sm font-medium hover:text-[#2d8fd4] transition-colors cursor-pointer"
+            className="text-[#1a6fb5] text-sm font-semibold hover:text-[#2d8fd4] transition-colors cursor-pointer"
           >
             Treat this symptom →
           </button>
