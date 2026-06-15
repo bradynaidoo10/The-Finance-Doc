@@ -6,8 +6,8 @@ import AnimatedCounter from "./ui/AnimatedCounter";
 import { fadeUp, staggerChildren } from "@/app/lib/motion";
 
 const stats = [
-  { icon: "♥", value: 700, suffix: "+", label: "Patients Served" },
-  { icon: "📋", value: 10, suffix: " Years", label: "In Practice" },
+  { icon: "🩺", value: 10000, suffix: "+", label: "Individuals Diagnosed" },
+  { icon: "❤️‍🩹", value: 8356, suffix: "", label: "Treated & Counting" },
   { icon: "🏆", value: 2, suffix: "×", label: "Industry Recognised" },
   { icon: "💊", display: "Free", label: "First Consultation" },
 ];

@@ -115,9 +115,9 @@ export default function Hero() {
                 Broker of the Year 2023 &amp; 2025
               </span>
               <span className="w-px h-4 bg-[rgba(26,111,181,0.2)]" />
-              <span>700+ Patients Served</span>
+              <span>10,000+ Individuals Diagnosed</span>
               <span className="w-px h-4 bg-[rgba(26,111,181,0.2)]" />
-              <span>10 Years in Practice</span>
+              <span>8,356 Treated &amp; Counting</span>
             </motion.div>
           </motion.div>
 
