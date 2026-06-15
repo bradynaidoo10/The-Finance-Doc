@@ -2,10 +2,10 @@
 
 import { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
-import { openWA } from "@/app/lib/wa";
+import { openWA, WAKey } from "@/app/lib/wa";
 
 interface WAButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  message?: string;
+  message?: WAKey;
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
 }

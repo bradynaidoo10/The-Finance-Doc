@@ -56,7 +56,7 @@ export default function StatsBar() {
                   {stat.display ? (
                     stat.display
                   ) : (
-                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                    <AnimatedCounter target={stat.value ?? 0} suffix={stat.suffix} />
                   )}
                 </div>
                 <div className="text-sm text-[#6b7280] font-medium mt-1">
